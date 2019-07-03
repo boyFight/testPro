@@ -1,0 +1,204 @@
+server:
+  port: 9000
+spring:
+  application:
+#  security:
+#    user:
+#      name: eureka
+#      password: eureka
+    name: preser-eureka
+  profiles: test1 #激活某个环境
+  #链路跟踪
+#  zipkin:
+#    service:
+#      name: preser-eureka-1
+#    sender:
+#      type: kafka
+#    kafka:
+#      topic: zipkin
+#    base-url: http://10.1.103.106:9060
+#  kafka:
+#    bootstrap-servers: 10.1.103.106:9092
+#  sleuth:
+#    sampler:
+#      probability: 1
+#    web:
+#      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication|/eureka/.*
+#服务注册
+eureka:
+  client:
+    #是否将自己这个服务注册到EurekaServer中  默认True 此服务为Server  所以为False
+    registerWithEureka: false
+    #是否从EurekaServer获取注册信息 默认True 单点ES不存在其他的EurkaServer 所以为False
+    fetchRegistry: false
+    serviceUrl:
+      #与ES交互的地址 查询注册都依赖此地址 默认为http://localhost:8761/eureka 多个地址使用","分割
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+#    serviceUrl:
+#      defaultZone: http://peer1:1111/eureka/,http://peer2:2222/eureka/
+
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#暴露所有内部地址    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
+---
+server:
+  port: 9001
+spring:
+  application:
+  #  security:
+  #    user:
+  #      name: eureka
+  #      password: eureka
+    name: preser-eureka
+  profiles: test2 #激活某个环境
+  #链路跟踪
+#  zipkin:
+#    service:
+#      name: preser-eureka-2
+#    sender:
+#      type: kafka
+#    kafka:
+#      topic: zipkin
+#    base-url: http://10.1.103.106:9060
+#  kafka:
+#    bootstrap-servers: 10.1.103.106:9092
+#  sleuth:
+#    sampler:
+#      probability: 1
+#    web:
+#      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication|/eureka/.*
+#服务注册
+eureka:
+  client:
+    #是否将自己这个服务注册到EurekaServer中  默认True 此服务为Server  所以为False
+    registerWithEureka: false
+    #是否从EurekaServer获取注册信息 默认True 单点ES不存在其他的EurkaServer 所以为False
+    fetchRegistry: false
+    serviceUrl:
+      #与ES交互的地址 查询注册都依赖此地址 默认为http://localhost:8761/eureka 多个地址使用","分割
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+#    serviceUrl:
+#      defaultZone: http://peer1:1111/eureka/,http://peer2:2222/eureka/
+
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#暴露所有内部地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
+---
+server:
+  port: 9002
+spring:
+  application:
+  #  security:
+  #    user:
+  #      name: eureka
+  #      password: eureka
+    name: preser-eureka
+  profiles: test3 #激活某个环境
+  #链路跟踪
+#  zipkin:
+#    service:
+#      name: preser-eureka-3
+#    sender:
+#      type: kafka
+#    kafka:
+#      topic: zipkin
+#    base-url: http://10.1.103.106:9060
+#  kafka:
+#    bootstrap-servers: 10.1.103.106:9092
+#  sleuth:
+#    sampler:
+#      probability: 1
+#    web:
+#      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication|/eureka/.*
+#服务注册
+eureka:
+  client:
+    #是否将自己这个服务注册到EurekaServer中  默认True 此服务为Server  所以为False
+    registerWithEureka: false
+    #是否从EurekaServer获取注册信息 默认True 单点ES不存在其他的EurkaServer 所以为False
+    fetchRegistry: false
+    serviceUrl:
+      #与ES交互的地址 查询注册都依赖此地址 默认为http://localhost:8761/eureka 多个地址使用","分割
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+#    serviceUrl:
+#      defaultZone: http://peer1:1111/eureka/,http://peer2:2222/eureka/
+
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#暴露所有内部地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
+

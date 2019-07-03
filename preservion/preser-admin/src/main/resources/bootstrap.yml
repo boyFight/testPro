@@ -1,0 +1,20 @@
+server:
+  port: 9050
+
+spring:
+  application:
+    name: preser-admin
+
+#eureka配置
+eureka:
+  instance:
+    statusPageUrlPath: /
+#    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 5
+#    lease-expiration-duration-in-seconds: 20
+  client:
+#    registry-fetch-interval-seconds: 10
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+
+

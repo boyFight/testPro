@@ -1,0 +1,146 @@
+server:
+  port: 9020
+spring:
+  application:
+    name: preser-config
+  profiles: test1 #激活某个环境
+
+  #链路跟踪
+  zipkin:
+    service:
+      name: preser-config-1
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+  cloud:
+    config:
+      profile: dev
+      server:
+        git:
+          uri: http://hucy@gitlab.polyhome.net/hucy/config.git
+          search-paths: /**
+        default-profile: dev
+#      lebel: master
+#      discovery:
+#        enabled: true
+#        service-id: preser-config
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+#日志
+logging:
+  level:
+    root: INFO
+    com.polysoft: DEBUG
+---
+server:
+  port: 9021
+spring:
+  application:
+    name: preser-config
+  profiles: test2 #激活某个环境
+
+  #链路跟踪
+  zipkin:
+    service:
+      name: preser-config-2
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+  cloud:
+    config:
+      profile: dev
+      server:
+        git:
+          uri: http://hucy@gitlab.polyhome.net/hucy/config.git
+          search-paths: /**
+        default-profile: dev
+#      lebel: master
+
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+#日志
+logging:
+  level:
+    root: INFO
+    com.polysoft: DEBUG
+---
+server:
+  port: 9022
+spring:
+  application:
+    name: preser-config
+  profiles: test3 #激活某个环境
+
+  #链路跟踪
+  zipkin:
+    service:
+      name: preser-config-3
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+  cloud:
+    config:
+      profile: dev
+      server:
+        git:
+          uri: http://hucy@gitlab.polyhome.net/hucy/config.git
+          search-paths: /**
+        default-profile: dev
+      lebel: master
+
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+#日志
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
+

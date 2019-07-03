@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: preser-product
+  profiles:
+    active: test1 #激活某个环境
+ #链路跟踪
+  zipkin:
+    service:
+      name: preser-product
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+server:
+  port: 9030
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#暴露所有内部地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG

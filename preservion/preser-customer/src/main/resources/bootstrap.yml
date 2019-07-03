@@ -1,0 +1,134 @@
+spring:
+  application:
+    name: preser-customer
+  profiles: test1 #激活某个环境
+
+  #链路跟踪
+  zipkin:
+    service:
+      name: preser-customer-1
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://preser-config/
+      discovery:
+        enabled: true
+        service-id: preser-config
+server:
+  port: 9010
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
+---
+spring:
+  application:
+    name: preser-customer
+  profiles: test2 #激活某个环境
+
+  #链路跟踪
+  zipkin:
+    service:
+      name: preser-customer-2
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://preser-config/
+      discovery:
+        enabled: true
+        service-id: preser-config
+server:
+  port: 9011
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
+---
+spring:
+  application:
+    name: preser-customer
+  profiles: test3 #激活某个环境
+
+  #链路跟踪
+  zipkin:
+    service:
+      name: preser-customer-3
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+    base-url: http://10.1.103.106:9060
+  kafka:
+    bootstrap-servers: 10.1.103.106:9092
+  sleuth:
+    sampler:
+      probability: 1
+    web:
+      skip-pattern: /*swagger*|/v2/api-docs|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\.png|.*\.css|.*\.js|.*\.html|/favicon.ico|/hystrix.stream|/application/.*|/actuator.*|/cloudfoundryapplication
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://preser-config/
+      discovery:
+        enabled: true
+        service-id: preser-config
+server:
+  port: 9012
+#服务注册
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://10.1.103.107:9000/eureka,http://10.1.103.107:9001/eureka,http://10.1.103.107:9002/eureka
+logging:
+  level:
+    root: INFO
+    com.poly: DEBUG
